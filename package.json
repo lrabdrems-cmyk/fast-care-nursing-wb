@@ -1,0 +1,24 @@
+{
+  "name": "fastcare-nursing-whatsapp-bot",
+  "version": "1.0.0",
+  "description": "Fast Care Nursing — 24/7 WhatsApp AI Bot for Home Nursing Services in Sri Lanka",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@whiskeysockets/baileys": "^6.7.9",
+    "qrcode-terminal": "^0.12.0",
+    "pino": "^8.19.0"
+  },
+  "keywords": [
+    "whatsapp-bot",
+    "nursing",
+    "home-care",
+    "sri-lanka",
+    "fastcarenursing"
+  ],
+  "author": "Fast Care Nursing <contact@fastcarenursing.com>",
+  "license": "ISC",
+  "homepage": "https://fastcarenursing.com"
+}
