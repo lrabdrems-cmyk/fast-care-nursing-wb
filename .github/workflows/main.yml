@@ -1,0 +1,33 @@
+name: FastCareNursing-WhatsApp-Bot
+
+on:
+  workflow_dispatch:   # Manual trigger (use this for first run to scan QR)
+  schedule:
+    - cron: '0 */5 * * *'   # Re-runs every 5 hours (restores connection if dropped)
+
+jobs:
+  bot:
+    runs-on: ubuntu-latest
+    # Allow up to 5h 50min runtime (GitHub Actions max is 6 hours)
+    timeout-minutes: 350
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Start Fast Care Nursing Bot
+        env:
+          FIREBASE_URL: ${{ secrets.FIREBASE_URL }}
+        run: node index.js
+        # The bot will:
+        # 1) Load session from Firebase (no QR needed after first run)
+        # 2) Stay running until GitHub kills it at ~6h
+        # 3) The next scheduled run will re-connect automatically
